@@ -12,7 +12,7 @@ struct Index {
 }
 
 @Component
-struct todoItem {
+export struct todoItem {
   @State ischecked: boolean = false;
   @State content: string = '';
 
