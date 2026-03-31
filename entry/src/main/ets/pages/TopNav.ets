@@ -5,12 +5,19 @@ import { TopNavData, TopNavInterface } from '../models/TopNav';
 @Component
 struct TopNav {
   @State message: string = 'Hello World';
+  @State selectedIndex: number = -1; // 当前选中的菜单索引，-1表示未选中
 
   build() {
     Column() {
       Row() {
-        ForEach(TopNavData, (item: TopNavInterface) => {
-          TopNavItem({ TopNavMenu: item.name })
+        ForEach(TopNavData, (item: TopNavInterface, index: number) => {
+          TopNavItem({
+            TopNavMenu: item.name,
+            isSelected: this.selectedIndex === index,
+            onItemClick: () => {
+              this.selectedIndex = index;
+            }
+          })
         })
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
@@ -24,19 +31,16 @@ struct TopNav {
 
 @Component
 struct TopNavItem {
-  @State TopNavMenu: string = " "
-  @State selected: boolean = false
-  @State TextColor: Color = Color.Black;
+  @Prop TopNavMenu: string = " ";
+  @Prop isSelected: boolean = false;
+  onItemClick: () => void = () => {};
 
   build() {
     Column() {
       Text(this.TopNavMenu)
-        .fontColor(this.selected ? Color.Orange : Color.Black)
+        .fontColor(this.isSelected ? Color.Orange : Color.Black)
         .onClick(() => {
-          this.selected = !this.selected
-          if (this.selected == true) {
-            this.TextColor = Color.Orange
-          }
+          this.onItemClick();
         })
     }
   }
