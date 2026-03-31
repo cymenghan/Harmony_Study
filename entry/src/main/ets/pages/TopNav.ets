@@ -1,16 +1,22 @@
 import { CourseUI } from '../components/CourseUI';
+import { TopNavItem } from '../components/TopNavItem';
 import { TopNavData, TopNavInterface } from '../models/TopNav';
 
 @Entry
 @Component
 struct TopNav {
   @State message: string = 'Hello World';
+  @Provide('curIdx') curIdx: number = 0
 
   build() {
     Column() {
       Row() {
-        ForEach(TopNavData, (item: TopNavInterface) => {
-          TopNavItem({ TopNavMenu: item.name })
+        ForEach(TopNavData, (item: TopNavInterface, index: number) => {
+          TopNavItem({
+            menuName: item.name,
+            menuColor: this.curIdx == index ? Color.Orange : Color.Gray,
+            idx: index,
+          })
         })
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
@@ -19,25 +25,5 @@ struct TopNav {
     }
     .height('100%')
     .width('100%')
-  }
-}
-
-@Component
-struct TopNavItem {
-  @State TopNavMenu: string = " "
-  @State selected: boolean = false
-  @State TextColor: Color = Color.Black;
-
-  build() {
-    Column() {
-      Text(this.TopNavMenu)
-        .fontColor(this.selected ? Color.Orange : Color.Black)
-        .onClick(() => {
-          this.selected = !this.selected
-          if (this.selected == true) {
-            this.TextColor = Color.Orange
-          }
-        })
-    }
   }
 }
