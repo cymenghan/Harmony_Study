@@ -12,4 +12,10 @@ export const TopNavData: Array<TopNavInterface> = [
   {
     name: "星期三"
   },
+  {
+    name: "星期四"
+  },
+  {
+    name: "星期五"
+  }
 ]

@@ -1,11 +1,12 @@
-import { CourseData, CourseInterface } from '../models/Course'
+import { WeekCourseInterface, CourseInterface, WeekCourseList } from '../models/Course'
 
 @Component
 export struct CourseUI {
+  @Consume('curIdx') curIdx:number=0
   build() {
     Column() {
       Grid() {
-        ForEach(CourseData, (item: CourseInterface) => {
+        ForEach(WeekCourseList[this.curIdx].daycourse, (item: CourseInterface) => {
           GridItem() {
             Column() {
               Text(item.name)
@@ -14,7 +15,7 @@ export struct CourseUI {
               Text(item.time)
                 .padding({ top: 10 })
                 .fontSize(20)
-              Text(item.adress)
+              Text(item.address)
                 .padding({ top: 10 })
                 .fontSize(20)
             }
