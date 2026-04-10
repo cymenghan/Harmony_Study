@@ -1,6 +1,0 @@
-@Component
-struct BottomMenu {
-  build() {
-    
-  }
-}

@@ -1,6 +1,6 @@
 import { me } from '../components/me';
-import { TopNav } from '../components/TopNav';
 import { SymbolGlyphModifier } from '@kit.ArkUI';
+import { TopNav } from './TopNav';
 
 @Entry
 @Component
@@ -8,8 +8,10 @@ struct MyCoursePage {
   @State message: string = 'Hello World';
   @State bm1icon: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.house'))
   @State bm2icon: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.person'))
+  @Provide pathStack: NavPathStack = new NavPathStack()
 
   build() {
+    Navigation(this.pathStack) {
     Column() {
       Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
@@ -27,5 +29,6 @@ struct MyCoursePage {
     .height('100%')
     .width('100%')
 
+    }.height(900)
   }
 }

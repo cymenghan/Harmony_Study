@@ -9,6 +9,7 @@ export struct TopNav {
   @State message: string = 'Hello World';
   @Provide('curIdx') curIdx: number = 0
   @Provide('weekIdx') weekIdx: number = 0
+  @Consume pathStack: NavPathStack
 
   build() {
     Column() {
@@ -53,18 +54,25 @@ export struct TopNav {
 
       //课表区域
       Grid() {
-        ForEach(termCourseList[this.weekIdx]?.weekcourse[this.curIdx].daycourse, (item: CourseInterface) => {
-          GridItem() {
-            Course({
-              courseName: item.name,
-              courseTime: item.time,
-              courseAddr: item.address
+        ForEach(termCourseList[this.weekIdx]?.weekcourse[this.curIdx].daycourse,
+          (item: CourseInterface, index: number) => {
+            GridItem() {
+              Course({
+                courseName: item.name,
+                courseTime: item.time,
+                courseAddr: item.address
+              })
+            }
+            .margin({ bottom: 12 })
+            .borderRadius(12)
+            .backgroundColor(Color.Pink)
+            .onClick(() => {
+              console.log("[yyt]grid item clicked:" + index)
+              this.pathStack.pushPath({
+                name: "CourseDetailPage"
+              })
             })
-          }
-          .margin({ bottom: 12 })
-          .borderRadius(12)
-          .backgroundColor(Color.Pink)
-        })
+          })
       }
       .columnsTemplate('1fr 1fr')
       .rowsTemplate('1fr 1fr 1fr')

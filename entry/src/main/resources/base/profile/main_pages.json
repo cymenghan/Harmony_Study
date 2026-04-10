@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/GridPage",
     "pages/TopNav",
-    "pages/MyCoursePage"
+    "pages/MyCoursePage",
+    "pages/CourseDetailPage"
   ]
 }
