@@ -1,4 +1,4 @@
-import { CourseUI } from '../components/CourseUI';
+import { Course } from '../components/Course';
 
 @Entry
 @Component
@@ -7,7 +7,7 @@ struct GridPage {
 
   build() {
     Column() {
-      CourseUI()
+      Course()
     }
   }
 }

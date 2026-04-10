@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/GridPage",
-    "pages/TopNav"
+    "pages/TopNav",
+    "pages/MyCoursePage"
   ]
 }
